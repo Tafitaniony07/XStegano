@@ -1,0 +1,1259 @@
+ScreenManager:
+    SplashScreen:
+    LoginScreen:
+    SignupScreen:
+    PassforgetScreen: 
+    HomeScreen:
+    Message_secretScreen:
+    FilencryptionScreen:
+    Message_recupererScreen:
+    FiledecryptionScreen:
+    EncodageScreen:
+    DecodageScreen:
+    View1Screen:
+    View2Screen:
+    View_imageScreen:
+    View_fichierScreen:
+    Image_encodeScreen:
+    Image_decodeScreen:
+<SplashScreen>:
+    name: 'splash'
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+        Image:
+            source: "./Splash/icon.png"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .7, .8
+            halign: "center"
+        
+    MDFloatLayout:
+        MDLabel:
+            text: "....."
+            font_name: "./Fonts/dollie.ttf"
+            font_size: "24sp"
+            pos_hint: {"center_x":.5,"center_y":.2}
+            halign: "center"
+            color : 0.5,0.5,0.7,1
+
+<LoginScreen>:
+    name: "login"
+    MDFloatLayout:
+        md_bg_color: 0,150/255,242/255,1
+        MDLabel:
+            text:"Rejoignez ShyPhy Jofama "
+            font_name: "./Fonts/dollie.ttf"
+            font_size: "38sp"
+            size_hint_x : .85
+            pos_hint: {"center_x": .5,"center_y": .80}
+            color: 1,1,1,1
+            halign:"center"
+        MDFloatLayout:
+            size_hint: .6, .085
+            pos_hint: {"center_x": .5, "center_y": .58}
+            canvas:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: email_input
+                hint_text: "Email"
+                font_name: "./Fonts/Italic.ttf"
+                size_hint: 1, None
+                height: self.minimum_height
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0, 150/255, 242/255,1
+                padding: 26
+                multiline: False
+                hint_text_color: 150/255, 150/255, 150/255, 1
+                font_size: "14sp"
+        MDFloatLayout:
+            size_hint: .6, .085
+            pos_hint: {"center_x": .5, "center_y": .48}
+            canvas:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: password_input
+                hint_text: "Mot de passe"
+                font_name: "./Fonts/Italic.ttf"
+                size_hint: 1, None
+                height: self.minimum_height
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0, 150/255, 242/255,1
+                padding: 24
+                multiline: False
+                password: True
+                hint_text_color: 150/255, 150/255, 150/255, 1
+                font_size: "14sp"  
+        Button:
+            id: btn_connect
+            text: "Connexion"
+            size_hint: .4, .085
+            pos_hint: {"center_x": .5, "center_y": .36}
+            background_color: 1, 1, 1, 0
+            font_size: "28sp"
+            font_name: "./Fonts/dollie.ttf"
+            color: 0, 150/255, 242/255,1
+            on_press:
+                app.connexion()
+                root.manager.transition.direction = "left"
+            canvas.before:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+        MDTextButton:
+            text: "Mot de passe oublié ?"
+            pos_hint: {"center_x": .5, "center_y": .26}
+            color: 1,1,1,1
+            font_size: "20sp"
+            font_name: "./Fonts/dollie.ttf"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "pass_forget"
+        MDLabel:
+            text:"Vous n ' avez pas de compte ?"
+            color: 1,1,1,1
+            pos_hint: {"center_x": .5, "center_y": .19}
+            font_size: "22sp"
+            halign: "center"
+            font_name: "./Fonts/dollie.ttf"
+        MDTextButton:
+            id: textbtn_signup
+            text:"S ' inscrire"
+            color: 1,1,1,1
+            pos_hint: {"center_x": .5, "center_y": .12}
+            font_size: "24sp"
+            font_name: "./Fonts/dollie.ttf"
+            underline: True
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup"  
+    
+<SignupScreen>:
+    name : "signup"
+    MDFloatLayout:
+        md_bg_color: 0,150/255,242/255,1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(255, 255, 255, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "login"
+        MDLabel:
+            text:"Créer un nouveau compte"
+            font_name: "./Fonts/dollie.ttf"
+            font_size: "38sp"
+            halign: "center"
+            pos_hint: { "center_y": .82}
+            color: 1,1,1,1
+        MDFloatLayout:
+            size_hint: .6, .085
+            pos_hint: {"center_x": .5, "center_y": .63}
+            canvas:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: username_input
+                hint_text: "Nom d'utilisateur"
+                font_name: "./Fonts/Italic.ttf"
+                font_size: "14sp"
+                size_hint: 1, None
+                height: self.minimum_height
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0, 150/255, 242/255,1
+                padding: 26
+                multiline: False
+                hint_text_color: 150/255, 150/255, 150/255, 1
+        MDFloatLayout:
+            size_hint: .6, .085
+            pos_hint: {"center_x": .5, "center_y": .52}
+            canvas:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: email1_input
+                hint_text: "Email"
+                font_name: "./Fonts/Italic.ttf"
+                font_size: "14sp"
+                size_hint: 1, None
+                height: self.minimum_height
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0, 150/255, 242/255,1
+                padding: 26
+                multiline: False
+                hint_text_color: 150/255, 150/255, 150/255, 1
+        MDFloatLayout:
+            size_hint: .6, .085
+            pos_hint: {"center_x": .5, "center_y": .41}
+            canvas:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: password1_input
+                hint_text: "Mot de Pass"
+                font_name: "./Fonts/Italic.ttf"
+                size_hint: 1, None
+                font_size: "14sp"
+                height: self.minimum_height
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0, 150/255, 242/255,1
+                padding: 26
+                min_text_length: 3 
+                multiline: False
+                hint_text_color: 150/255, 150/255, 150/255, 1
+        Button:
+            text: "Créer"
+            size_hint: .4, .085
+            pos_hint: {"center_x": .5, "center_y": .27}
+            background_color: 1, 1, 1, 0
+            font_name: "./Fonts/dollie.ttf"
+            font_size: "28sp"
+            color: 0, 150/255, 242/255,1
+            on_press:
+                root.manager.transition.direction = "left"
+                app.inscription()
+            canvas.before:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+        MDLabel:
+            text:"Vous avez déjà un compte?"
+            color: 1,1,1,1
+            pos_hint: {"center_x": .63, "center_y": .14}
+            font_size: "22sp"
+            font_name: "./Fonts/dollie.ttf"
+        MDTextButton:
+            text:"S ' identifier"
+            color: 1,1,1,1
+            pos_hint: {"center_x": .83, "center_y": .14}
+            font_size: "24sp"
+            font_name: "./Fonts/dollie.ttf"
+            underline: True
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
+              
+<PassforgetScreen>:
+    name : "pass_forget"
+    MDFloatLayout:
+        md_bg_color: 0,150/255,242/255,1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            md_bg_color: app.theme_cls.primary_color
+            text_color: rgba(255, 255, 255, 255)
+            elevation_normal: 14
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "login"
+        MDLabel:
+            text:"Changer le mot de passe ?"
+            font_name: "./Fonts/dollie.ttf"
+            font_size: "36sp"
+            size_hint_x : .85
+            pos_hint: {"center_x": .5, "center_y": .78}
+            color: 1,1,1,1
+            halign: "center"
+        MDFloatLayout:
+            size_hint: .6, .085
+            pos_hint: {"center_x": .5, "center_y": .54}
+            canvas:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: new_email 
+                hint_text: "Email"
+                font_name: "./Fonts/Italic.ttf"
+                font_size: "14sp"
+                size_hint: 1, None
+                height: self.minimum_height
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0, 150/255, 242/255,1
+                padding: 26
+                multiline: False
+                hint_text_color: 150/255, 150/255, 150/255, 1
+        MDFloatLayout:
+            size_hint: .6, .085
+            pos_hint: {"center_x": .5, "center_y": .42}
+            canvas:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: new_password
+                hint_text: "Nouveau mot de passe"
+                font_name: "./Fonts/Italic.ttf"
+                font_size: "14sp"
+                size_hint: 1, None
+                height: self.minimum_height
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0, 150/255, 242/255,1
+                padding: 26
+                multiline: False
+                hint_text_color: 150/255, 150/255, 150/255, 1
+        Button:
+            text: "Changer"
+            size_hint: .4, .085
+            pos_hint: {"center_x": .5, "center_y": .28}
+            background_color: 1, 1, 1, 0
+            font_name: "./Fonts/dollie.ttf"
+            font_size: "28sp"
+            color: 0, 150/255, 242/255,1
+            on_press:
+                root.manager.transition.direction = "left"
+                app.change_pass()
+            canvas.before:
+                Color:
+                    rgb: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]    
+        MDTextButton:
+            text:"Retour à la page d ' inscription"
+            color: 1,1,1,1
+            pos_hint: {"center_x":.5,"center_y": .14}
+            font_size: "22sp"
+            font_name: "./Fonts/dollie.ttf"
+            underline: True
+            halign: "center"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "login"  
+<HomeScreen>:
+    name : "home"
+    MDNavigationLayout:
+        ScreenManager:
+            id: screen_manager
+            MDScreen
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        id: toolbar
+                        title: "Page d'accueil"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 12 
+                    MDFloatLayout:
+                        Button:
+                            text: "Insertion"
+                            size_hint: .35, .35
+                            background_color: 0, 0, 0, 0
+                            font_name: "./Fonts/dollie.ttf"
+                            font_size: "23sp"
+                            pos_hint: {"center_x":.5, "center_y":.45}
+                            color: rgba(255, 255, 255, 255)
+                            on_release:
+                                root.manager.transition.direction = "left"
+                                app.Encodage()
+                            canvas.before:
+                                Color:
+                                    rgb: rgba(0, 183, 231, 1)
+                                RoundedRectangle:
+                                    size: self.size
+                                    pos: self.pos
+                                    radius: [15]
+                    MDFloatLayout:
+                        Button:
+                            text: "Extraction"
+                            size_hint: .35, .35
+                            background_color: 0, 0, 0, 0
+                            font_name: "./Fonts/dollie.ttf"
+                            font_size: "23sp"
+                            pos_hint: {"center_x":.5, "center_y":.300}
+                            color: rgba(255, 255, 255, 255)
+                            on_release:
+                                root.manager.transition.direction = "left"
+                                app.Decodage()
+                            canvas.before:
+                                Color:
+                                    rgb: rgba(0, 183, 231, 1)
+                                RoundedRectangle:
+                                    size: self.size
+                                    pos: self.pos
+                                    radius: [15]
+                    MDBottomAppBar:
+                        MDTopAppBar:
+                            id: appbar
+                            title:"Jofama"
+                            type: 'bottom'
+                            icon: 'home'
+                            left_action_items: [["account-group", lambda x: x]]
+                            on_action_button: None
+                            mode : "center"
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDLabel:
+                    text:"      Menu"
+                    font_style: "Subtitle1"
+                    font_name: "./Fonts/dollie.ttf"
+                    size_hint_y: None
+                    color: 0,0,1,1
+                    font_size: "30sp"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text:"[font=./Fonts/Italic.ttf][size=14]Encoder[/size][/font]"
+                            on_press:
+                                nav_drawer.set_state("close")
+                                root.manager.current = "encodage"
+                            IconLeftWidget:
+                                icon:"lock"
+                        OneLineIconListItem:
+                            text:"[font=./Fonts/Italic.ttf][size=14]Decoder[/size][/font]"
+                            on_press:
+                                nav_drawer.set_state("close")
+                                root.manager.current = "decodage"
+                            IconLeftWidget:
+                                icon:"lock-open-variant"
+                        OneLineIconListItem:
+                            text:"[font=./Fonts/Italic.ttf][size=14]Apropos[/size][/font]"
+                            on_press:
+                                nav_drawer.set_state("close")
+                                app.apropos()
+                            IconLeftWidget:
+                                icon:"account"   
+                        OneLineIconListItem:
+                            text:"[font=./Fonts/Italic.ttf][size=14]Quitter[/size][/font]"
+                            on_press:
+                                nav_drawer.set_state("close")
+                                app.quitter()
+                            IconLeftWidget:
+                                icon:"logout"           
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer
+
+<EncodageScreen>:
+    name: "encodage"
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id:tool_enc
+            title: "Insertion"
+            left_action_items: [["security", lambda x: None]]
+            elevation: 12 
+        MDBottomNavigation:
+            panel_color:rgba(0, 183, 231, 1)
+            MDBottomNavigationItem:
+                name:"encodage_texte"
+                text:"Message"
+                icon:"message-text-lock" 
+                Button:
+                    text: "Cacher un message \n dans Image"
+                    size_hint: .6,.2
+                    pos_hint: {"center_x":.5, "center_y":.50}
+                    background_color: 0, 0, 0, 0
+                    font_name: "./Fonts/dollie.ttf"
+                    font_size: "23sp"
+                    halign: "center"
+                    color: rgba(255, 255, 255, 255)
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.encryption_msg()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(0, 183, 231, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [15]
+                
+            MDBottomNavigationItem:
+                name:"encodage_fichier"
+                text:"Fichier"
+                font_size: "25sp"
+                icon:"file-lock" 
+                Button:
+                    text: "Encoder Lsb Fichier\n dans Image"
+                    size_hint: .6,.2
+                    pos_hint: {"center_x":.5, "center_y":.500}
+                    background_color: 0, 0, 0, 0
+                    font_name: "./Fonts/dollie.ttf"
+                    font_size: "23sp"
+                    halign:"center"
+                    color: rgba(255, 255, 255, 255)
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.encryption_file()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(0, 183, 231, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [15]
+
+            MDBottomNavigationItem:
+                name:"encodage_imager"
+                text:"Image"
+                font_size: "25sp"
+                icon:"image-multiple" 
+                Button:
+                    text: "Dissimuler une image \n dans une autre"
+                    size_hint: .6,.2
+                    pos_hint: {"center_x":.5, "center_y":.500}
+                    background_color: 0, 0, 0, 0
+                    font_name: "./Fonts/dollie.ttf"
+                    font_size: "23sp"
+                    halign:"center"
+                    color: rgba(255, 255, 255, 255)
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.encryption_image()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(0, 183, 231, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [15]
+        MDBottomAppBar:
+            MDTopAppBar:
+                mode: "center"
+                type: 'bottom'
+                icon: 'lock'
+                left_action_items: [["chevron-left", lambda x: app.annuler()]]
+                on_action_button: None             
+<DecodageScreen>:
+    name: "decodage"
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: tool_dec
+            title: "Section Extraction"
+            left_action_items: [["lock-open-variant", lambda x: None]]
+            elevation: 12 
+        MDBottomNavigation:
+            panel_color:rgba(0, 183, 231, 1)
+            MDBottomNavigationItem:
+                name:"decoder"
+                text:"Message"
+                icon:"message-text" 
+                Button:
+                    text: "Retrouver le message \n depuis image"
+                    size_hint: .6,.2
+                    pos_hint: {"center_x":.5, "center_y":.500}
+                    background_color: 0, 0, 0, 0
+                    font_name: "./Fonts/dollie.ttf"
+                    font_size: "23sp"
+                    halign:"center"
+                    color: rgba(255, 255, 255, 255)
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.decryption_msg()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(0, 183, 231, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [15]           
+                
+            MDBottomNavigationItem:
+                name:"decoder_fichier"
+                text:"Fichier"
+                icon:"file"
+                Button:
+                    text: "Recupérer le fichier \n depuis image"
+                    halign: "center"
+                    size_hint: .6,.2
+                    pos_hint: {"center_x":.5, "center_y":.500}
+                    background_color: 0, 0, 0, 0
+                    font_name: "./Fonts/dollie.ttf"
+                    font_size: "23sp"
+                    halign:"center"
+                    color: rgba(255, 255, 255, 255)
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.decryption_file()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(0, 183, 231, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [15]
+            MDBottomNavigationItem:
+                name:"extraire"
+                text:"Image "
+                icon:"image-plus" 
+                Button:
+                    text: "Recuperer image cache"
+                    halign: "center"
+                    size_hint: .6,.2
+                    pos_hint: {"center_x":.5, "center_y":.500}
+                    background_color: 0, 0, 0, 0
+                    font_name: "./Fonts/dollie.ttf"
+                    font_size: "23sp"
+                    halign:"center"
+                    color: rgba(255, 255, 255, 255)
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.decryption_image()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(0, 183, 231, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [15]
+        MDBottomAppBar:
+            MDTopAppBar:
+                mode: "center"
+                type: 'bottom'
+                icon: 'lock-open-variant'
+                left_action_items: [["chevron-left", lambda x: app.annuler()]]
+                on_action_button: None
+<Message_secretScreen>:
+    name: "message_cachee"
+    MDBackdrop:
+        title: 'Insertion'
+        header_text : "Encoder le message"
+        right_action_items: [["content-save", lambda x: app.encode_msg() ]]
+    MDFloatLayout:
+        MDLabel:
+            text: " Message à cacher  "
+            pos_hint: {"center_x":.2, "center_y": .780}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "15sp"
+            halign: "center"
+        MDLabel:
+            id:long_msg
+            pos_hint: {"center_x":.65, "center_y": .780}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "15sp"
+            halign: "center"
+        MDTextField:
+            id: msg_in
+            hint_text:'Aaa...'
+            size_hint: .8, .18
+            pos_hint: {"center_x":.5, "center_y": .610}
+            multiline: True
+            font_name: './Fonts/Poppins-Regular.ttf'
+            mode: "fill"
+            fill_color: 0, 0.37, 0.238, 0.07 
+            height: self.minimum_height
+        MDLabel:
+            text: "Veuillez importer l'image de couverture "
+            pos_hint: {"center_x":.32, "center_y": .460}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "15sp"
+            halign: "center"
+        Button:
+            text: "Parcourir..."
+            size_hint: .2,.065
+            pos_hint: {"center_x":.84, "center_y":.450}
+            background_color: 0, 0, 0, 0
+            font_name: "./Fonts/Poppins-SemiBold.ttf"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                app.image_select()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        Button:
+            text: "Voir"
+            size_hint: .2,.065
+            pos_hint: {"center_x":.84, "center_y":.370}
+            background_color: 0, 0, 0, 0
+            font_name: "./Fonts/Poppins-SemiBold.ttf"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                app.voir_image()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        MDLabel:
+            id: img_in
+            pos_hint: {"center_x":.4, "center_y": .380}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            multiline: True
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,1,1
+        MDLabel:
+            id: vide 
+            text:"Aucune image sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .380}
+            font_name: "./Fonts/Italic.ttf"
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1
+        MDLabel:
+            text: "Nom de l'image sortie : "
+            pos_hint: {"center_x":.23, "center_y": .240}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "15sp"
+            halign: "center"
+        MDTextField:
+            id: img_cover
+            hint_text: "Aa..."
+            size_hint_x: .5
+            pos_hint: {"center_x":.65, "center_y": .235}
+            multiline: False
+            font_name: './Fonts/Poppins-Regular.ttf'
+            mode: "fill"
+            fill_color: 0, 0.37, 0.238, 0.07 
+    MDBottomAppBar:
+        MDTopAppBar:
+            mode: "free-end"
+            type: 'bottom'
+            title:'retour'
+            icon:"autorenew"
+            left_action_items: [["chevron-left", lambda x: app.Encodage()]]
+            right_action_items: [["window-close", lambda x: app.exit()]]
+            on_action_button: app.actual()
+<Message_recupererScreen>:
+    name: 'message_clair'
+    MDBackdrop:
+        title: 'Extraction'
+        header_text:'Décoder le message'
+        right_action_items: [["content-save", lambda x:app.decode_msg() ]]
+    MDFloatLayout:
+        MDLabel: 
+            id : img_dec
+            pos_hint: {"center_x": .3, "center_y": .435}
+            halign: "center"
+            font_size: "14sp"
+            multiline:True
+            color:0,0,1,1
+            font_name: "./Fonts/Poppins-Regular.ttf"
+        MDLabel:
+            text:"Importez une image contenant le message"
+            pos_hint: {"center_x":.3, "center_y": .490}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+        Button:
+            text: "Parcourir..."
+            size_hint: .2,.065
+            pos_hint: {"center_x":.84, "center_y":.500}
+            background_color: 0, 0, 0, 0
+            font_name: "./Fonts/Poppins-SemiBold.ttf"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                app.image_select()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        MDLabel:
+            id: vide
+            text:"Aucune image sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .435}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1
+        Image:
+            id: img_cov_dec
+            size_hint: .7, .25
+            pos_hint : {"center_x": .48, "center_y": .680}
+            halign : "center"
+        MDLabel:
+            text: "Message décodé : "
+            pos_hint: {"center_x":.18, "center_y": .380}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "15sp"
+            halign: "center"
+        MDLabel: 
+            id : msg_out
+            pos_hint : {"center_x": .5, "center_y": .300}
+            font_size: "14sp"
+            font_name: "./Fonts/Poppins-Regular.ttf"
+            halign:"center"
+            color : 0.1,0.1,0.1, 1
+            multiline: True
+    MDBottomAppBar:
+        MDTopAppBar:
+            font_name: './Fonts/Poppins-Regular.ttf'
+            left_action_items: [["chevron-left", lambda x: app.Decodage()]]
+            mode: "free-end"
+            type: 'bottom'
+            title:'retour'
+            icon: 'autorenew'
+            right_action_items: [["window-close", lambda x: app.exit()]]
+            on_action_button: app.actual()
+            
+<FilencryptionScreen>:
+    name: "filencryption"
+    MDBackdrop:
+        header_text : "Cacher un fichier dans image"
+        title: 'Encryptage Fichier'
+        right_action_items: [["content-save", lambda x: app.encrypt_file()]]
+    MDFloatLayout:
+        Button:
+            text: "Insérer un fichier"
+            halign: "center"
+            size_hint: .5,.085
+            pos_hint: {"center_x":.4, "center_y":.750}
+            background_color: 0, 0, 0, 0
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "16sp"
+            halign:"center"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                app.file_select()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10]
+        MDLabel:
+            id: file_in
+            pos_hint: {"center_x":.5, "center_y": .650}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,1,1
+        MDLabel:
+            id: vide_file
+            text:"Aucun fichier sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .650}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1
+        Button:
+            text: "Insérer une image de couverture"
+            halign: "center"
+            size_hint: .5,.085
+            pos_hint: {"center_x":.4, "center_y":.500}
+            background_color: 0, 0, 0, 0
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "16sp"
+            halign:"center"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                app.image_select()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10]
+        Button:
+            text: "Voir"
+            size_hint: .23,.078
+            pos_hint: {"center_x":.84, "center_y":.500}
+            background_color: 0, 0, 0, 0
+            font_name: "./Fonts/Poppins-SemiBold.ttf"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                app.voir_fichier()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        MDLabel:
+            id: vide
+            text:"Aucune image sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .400}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1
+        MDLabel:
+            id: img_in
+            pos_hint: {"center_x":.5, "center_y": .400}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,1,1
+        MDLabel:
+            text: "Nom de l'image sortie: "
+            pos_hint: {"center_x":.27, "center_y": .250}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "15sp"
+            halign: "center"
+        MDTextField:
+            id: img_cover
+            hint_text : "nouveau nom..."
+            halign: "center"
+            size_hint_x: .5
+            pos_hint: {"center_x":.7, "center_y": .250}
+            multiline: False
+            font_name: './Fonts/Poppins-Regular.ttf'
+            mode: "fill"
+            fill_color: 0, 0.37, 0.238, 0.07 
+    MDBottomAppBar:
+        MDTopAppBar:
+            mode: "free-end"
+            type: 'bottom'
+            icon: 'autorenew'
+            title:'retour'
+            left_action_items: [["chevron-left", lambda x: app.Encodage()]]
+            right_action_items: [["window-close", lambda x: app.exit()]]
+            on_action_button :  app.actual()
+<FiledecryptionScreen>:
+    name: "filedecryption"
+    MDBackdrop:
+        header_text : " Extraire un fichier dans image"
+        title: 'Recupération Fichier'
+        right_action_items: [["content-save", lambda x : app.decrypt_file()]]
+    MDFloatLayout:
+        Image:
+            id: img_cov_src
+            size_hint: .6, .25
+            pos_hint : {"center_x": .5, "center_y": .680}
+            halign : "center"
+        Button:
+            text: "Parcourir..."
+            size_hint: .23,.078
+            pos_hint: {"center_x":.84, "center_y":.470}
+            background_color: 0, 0, 0, 0
+            font_name: "./Fonts/Poppins-SemiBold.ttf"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                app.image_select()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        MDLabel:
+            text: "Importer l'image contenant le fichier: "
+            pos_hint: {"center_x":.4, "center_y": .480}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,0,1
+        MDLabel:
+            id: img_d
+            pos_hint: {"center_x":.5, "center_y": .400}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,0,1
+        MDLabel:
+            id: vide
+            text:"Aucune image sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .400}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1
+        MDLabel:
+            text: "Nom du fichier sortie : "
+            pos_hint: {"center_x":.25, "center_y": .250}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,0,1
+        MDTextField:
+            id: new_name
+            hint_text: "Aaa..."
+            font_name : "./Fonts/Poppins-Regular.ttf"
+            size_hint_x: .5
+            pos_hint: {"center_x":.7, "center_y": .245}
+            multiline: False
+            font_name: './Fonts/Poppins-Regular.ttf'
+            mode: "fill"
+            fill_color: 0, 0.37, 0.238, 0.07     
+        MDBottomAppBar:
+            MDTopAppBar:
+                mode: "free-end"
+                type: 'bottom'
+                icon: 'autorenew'
+                title:'retour'
+                left_action_items: [["chevron-left", lambda x: app.Decodage()]]
+                right_action_items: [["window-close", lambda x: app.exit()]]
+                on_action_button : app.actual()
+
+<View1Screen>:
+    name: 'view1'
+    MDBackdrop:
+        header_text : "Screen"
+        title: 'Message '
+        right_action_items: [["check", lambda x: app.close_view1()]]
+    MDFloatLayout:
+        MDLabel: 
+            id : view1_txt
+            pos_hint: {"center_x": .5, "center_y": .500}
+            halign: "center"
+            font_size: "14sp"
+            font_name: "./Fonts/Poppins-Regular.ttf"
+            multiline: True
+       
+<View2Screen>:
+    name: 'view2'
+    MDBackdrop:
+        header_text : "Screen"
+        title: 'Stego_Image'
+        right_action_items: [["check", lambda x: app.close_view2()]]
+    MDFloatLayout:
+      
+        Image:
+            id : image_view2
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .8, .8
+            halign: "center"
+
+<View_imageScreen>:
+    name: 'view_image'
+    MDBackdrop:
+        header_text : "Screen"
+        title: 'Image de couverture'
+        right_action_items: [["check", lambda x: app.close_view_image()]]
+    MDFloatLayout:
+       
+        Image:
+            id : v_image
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .8, .8
+            halign: "center"
+<View_fichierScreen>:
+    name: 'view_fichier'
+    MDBackdrop:
+        header_text : "Screen"
+        title: 'Image de couverture'
+        right_action_items: [["check", lambda x: app.close_view_fichier()]]
+    MDFloatLayout:
+       
+        Image:
+            id : v_fichier
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .8, .8
+            halign: "center"
+<Image_encodeScreen>:
+    name: 'image_encode'
+    MDBackdrop:
+        header_text : "Fusionner des images"
+        title: 'Image Secret'
+        right_action_items: [["content-save", lambda x: app.save_image()]]
+    MDFloatLayout:
+        Button:
+            text:"Inserer l 'image à cacher"
+            size_hint: .5, .085
+            pos_hint: {"center_x":.4, "center_y":.750}
+            background_color: 0, 0, 0, 0
+            font_size: "16sp"
+            font_name: './Fonts/Poppins-Regular.ttf'
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                app.image_visible()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10]                   
+        MDLabel:
+            id: image_1
+            pos_hint: {"center_x":.5, "center_y": .650}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,1,1
+        MDLabel:
+            id: vide
+            text:"Aucune image sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .650}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1
+        MDLabel:
+            id: vide1
+            text:"Aucune image sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .400}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1      
+        Button:
+            text:"Inserer l 'image visible "
+            size_hint: .5, .085
+            pos_hint: {"center_x":.4, "center_y":.500}
+            background_color: 0, 0, 0, 0
+            font_size: "16sp"
+            font_name: './Fonts/Poppins-Regular.ttf'
+            color: rgba(255, 255, 255, 255)
+            on_release:
+                app.image_cachee()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10]  
+        MDLabel:
+            id: img_2
+            pos_hint: {"center_x":.5, "center_y": .400}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size:"14sp"
+            halign: "center"
+            color: 0,0,1,1
+        MDLabel:
+            text: "Nom de l'image sortie  "
+            pos_hint: {"center_x":.23, "center_y": .250}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+        MDTextField:
+            id: img_stg
+            hint_text : "Aaa..."
+            halign: "center"
+            size_hint_x: .5
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            pos_hint: {"center_x":.7, "center_y": .250}
+            multiline: False
+            mode: "fill"
+            fill_color: 0, 0.37, 0.238, 0.07
+    MDBottomAppBar:
+        MDTopAppBar:
+            mode: "free-end"
+            type: 'bottom'
+            icon: 'autorenew'
+            title:'retour'
+            left_action_items: [["chevron-left", lambda x: app.returne()]]
+            right_action_items: [["window-close", lambda x: app.annuler()]]
+            on_action_button: app.actual()
+<Image_decodeScreen>:
+    name: "image_decode"
+    MDBackdrop:
+        header_text : "Retrouver l'image cachée"
+        title: "Image Secret"
+        right_action_items: [["content-save", lambda x: app.extraire_image()]]
+    MDFloatLayout:
+        Image:
+            id:img_deco
+            size_hint:.8,.25
+            pos_hint:{"center_x":.5,"center_y":.700}
+            halign:"center"
+        MDLabel:
+            text: "Importer une image fusionné : "
+            pos_hint: {"center_x":.35, "center_y": .530}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,0,1
+        MDLabel:
+            id: img_d
+            pos_hint: {"center_x":.5, "center_y": .430}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,1,1
+        MDLabel:
+            text: "Nom de l'mage recupérée : "
+            pos_hint: {"center_x":.32, "center_y": .250}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 0,0,0,1
+        MDLabel:
+            id: vided
+            text:"Aucune image sélectionnée"
+            pos_hint: {"center_x":.5, "center_y": .430}
+            font_name: './Fonts/Poppins-Regular.ttf'
+            font_size: "14sp"
+            halign: "center"
+            color: 1,0,0,1
+        MDTextField:
+            id: new_name
+            hint_text: "Aaa..."
+            size_hint_x: .4
+            pos_hint: {"center_x":.7, "center_y": .245}
+            multiline: False
+            font_name: './Fonts/Poppins-Regular.ttf'
+            mode: "fill"
+            fill_color: 0, 0.37, 0.238, 0.07
+        Button:
+            text: "Parcourir..."
+            size_hint: .23,.078
+            pos_hint: {"center_x":.84, "center_y":.520}
+            background_color: 0, 0, 0, 0
+            font_name: "./Fonts/Poppins-SemiBold.ttf"
+            color: rgba(255, 255, 255, 255)
+            on_release:
+              
+                app.image_fusionee()
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 183, 231, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+    MDBottomAppBar:
+        MDTopAppBar:
+            mode: "free-end"
+            type: 'bottom'
+            title:'retour'
+            icon: 'autorenew'
+            left_action_items: [["chevron-left", lambda x: app.returne()]]
+            right_action_items: [["window-close", lambda x: app.annuler()]]
+            on_action_button: app.actual()
